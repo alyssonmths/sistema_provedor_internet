@@ -69,3 +69,5 @@ As principais classes do domínio são:
 - **Figma / Draw.io** – prototipação e diagramas
 
 ---
+
+<img src="data/diagrama%20de%20classe.png">
