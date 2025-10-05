@@ -17,7 +17,32 @@ public class Cliente {
         this.plano = plano;
     }
 
-    public Plano getPlano() {
-        return plano;
+    public void atualizarContato(String novoContato) {
+        this.contato = novoContato;
     }
+
+    public void atualizarEndereco(String novoEndereco) {
+        this.endereco = novoEndereco;
+    }
+
+    public void associarPlano(Plano plano) {
+        this.plano = plano;
+    }
+
+    public void adicionarEquipamento(Equipamento equipamento) {
+        equipamentos.add(equipamento);
+    }
+
+    public void removerEquipamento(Equipamento equipamento) {
+        equipamentos.remove(equipamento);
+    }
+
+    public void listarEquipamentos() {
+        //
+    }
+
+    public String resumoCliente() {
+        return "a";
+    }
+
 }
