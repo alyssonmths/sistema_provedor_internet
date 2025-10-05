@@ -70,4 +70,4 @@ As principais classes do domínio são:
 
 ---
 
-<img src="data/diagrama%20de%20classe.png">
+<img src="data/diagrama%20de%20classes.png">
