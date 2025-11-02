@@ -1,10 +1,20 @@
-package org.example;
+package org.example.Controller;
 
 public class Equipamento {
 
-    private int id;
-    private String tipo;
-    private boolean entregue;
+    public int id;
+    public String tipo;
+    public boolean entregue;
+
+    public Equipamento() {
+
+    }
+
+    public Equipamento(int id, String tipo, boolean entregue) {
+        this.id = id;
+        this.tipo = tipo;
+        this.entregue = entregue;
+    }
 
     public void marcarComoEntregue() {
         this.entregue = true;

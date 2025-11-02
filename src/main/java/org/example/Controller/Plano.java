@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Controller;
 
 import java.util.Scanner;
 
@@ -66,10 +66,10 @@ public class Plano {
         System.out.println("Nome: ");
         plano.nome = sc.nextLine();
 
-        System.out.println("Endereço: ");
+        System.out.println("Descrição: ");
         plano.descricao = sc.nextLine();
 
-        System.out.println("Contato: ");
+        System.out.println("Velocidade: ");
         plano.velocidade = sc.nextDouble();
 
         System.out.println("Preço: ");

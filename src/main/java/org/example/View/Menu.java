@@ -1,4 +1,9 @@
-package org.example;
+package org.example.View;
+
+import org.example.Controller.Cliente;
+import org.example.Controller.Equipamento;
+import org.example.Controller.Estoque;
+import org.example.Controller.Plano;
 
 import java.util.Scanner;
 
@@ -83,7 +88,39 @@ public class Menu {
     }
 
     public static void menuEstoque() {
+
         System.out.println("GERENCIAR ESTOQUE");
+
+        System.out.println("1. Consultar estoque");
+        System.out.println("2. Adicionar equipamento");
+        System.out.println("3. Registrar saída");
+
+        int escolha = sc.nextInt();
+        Estoque estoque = new Estoque();
+
+        if (escolha == 1) {
+
+            System.out.println("CONSULTA DE ESTOQUE");
+
+            estoque.consultarEstoque();
+
+        }
+        else if (escolha == 2) {
+
+            System.out.println("ADICIONAR EQUIPAMENTO");
+
+            estoque.adicionarEquipamento();
+
+        }
+        else if (escolha == 3) {
+
+            System.out.println("REGISTRAR SAÍDA");
+
+            Equipamento e = new Equipamento();
+            estoque.removerEquipamento(e);
+
+        }
+
     }
 
 }

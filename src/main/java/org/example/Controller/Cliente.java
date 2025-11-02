@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Controller;
 
 import java.util.List;
 import java.util.Scanner;
@@ -39,6 +39,8 @@ public class Cliente {
         this.plano = new Plano("Teste", "Teste", 1, 1);
 
         // LOGICA DO BANCO DE DADOS
+
+
     }
 
     public void atualizarContato(String novoContato) {
