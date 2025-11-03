@@ -1,9 +1,9 @@
-package org.example.View;
+package org.example.view;
 
-import org.example.Controller.Cliente;
-import org.example.Controller.Equipamento;
-import org.example.Controller.Estoque;
-import org.example.Controller.Plano;
+import org.example.controller.Cliente;
+import org.example.controller.Equipamento;
+import org.example.controller.Estoque;
+import org.example.controller.Plano;
 
 import java.util.Scanner;
 
@@ -50,8 +50,7 @@ public class Menu {
 
             System.out.printf("Cliente %s cadastrado com sucesso", cliente.getNome());
 
-        }
-        else if (escolha == 2) {
+        } else if (escolha == 2) {
 
             System.out.println("ATUALIZAÇÃO DE CLIENTE");
 
@@ -76,12 +75,13 @@ public class Menu {
 
             System.out.printf("Plano %s cadastrado com sucesso", plano.getNome());
 
-        }
-        else if (escolha == 2) {
+        } else if (escolha == 2) {
 
             System.out.println("ATUALIZAÇÃO DE PLANO");
 
             Plano.atualizarDados();
+
+            System.out.println("Plano atualizado com sucesso");
 
         }
 
@@ -98,23 +98,40 @@ public class Menu {
         int escolha = sc.nextInt();
         Estoque estoque = new Estoque();
 
+        // Dados mockados ------------
+        for (int i = 0; i < 5; i++) {
+            Equipamento e = new Equipamento(1, "Roteador TP-LINK", false);
+            estoque.adicionarEquipamento(e);
+        }
+        // --------------------------
+
         if (escolha == 1) {
 
             System.out.println("CONSULTA DE ESTOQUE");
-
             estoque.consultarEstoque();
 
-        }
-        else if (escolha == 2) {
+        } else if (escolha == 2) {
 
             System.out.println("ADICIONAR EQUIPAMENTO");
 
-            estoque.adicionarEquipamento();
-
-        }
-        else if (escolha == 3) {
-
             System.out.println("REGISTRAR SAÍDA");
+
+            System.out.println("ID: ");
+            int id = sc.nextInt();
+            sc.nextLine();
+
+            System.out.println("Tipo: ");
+            String tipo = sc.nextLine();
+
+            System.out.println("Já foi entregue? s/n: ");
+            boolean entregue = sc.nextLine().equalsIgnoreCase("s");
+
+            Equipamento e = new Equipamento(id, tipo, entregue);
+            estoque.adicionarEquipamento(e);
+
+            System.out.printf("Equipamento %s adicionado com sucesso", e.tipo);
+
+        } else if (escolha == 3) {
 
             Equipamento e = new Equipamento();
             estoque.removerEquipamento(e);

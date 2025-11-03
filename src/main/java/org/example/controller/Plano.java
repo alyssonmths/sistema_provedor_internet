@@ -1,4 +1,4 @@
-package org.example.Controller;
+package org.example.controller;
 
 import java.util.Scanner;
 
@@ -30,7 +30,7 @@ public class Plano {
         System.out.println("Descrição: ");
         this.descricao = sc.nextLine();
 
-        System.out.println("Contato: ");
+        System.out.println("Velocidade: ");
         this.velocidade = sc.nextDouble();
 
         System.out.println("Preço: ");
@@ -57,21 +57,19 @@ public class Plano {
 
         // LÓGICA PARA PESQUISAR O PLANO
 
+        // Dados mockados ---------------
         Plano plano = new Plano("Teste", "Teste", 1, 1);
+        // ------------------------------
 
         System.out.println("Dados do plano selecionado");
-
         System.out.println(plano);
 
         System.out.println("Nome: ");
         plano.nome = sc.nextLine();
-
         System.out.println("Descrição: ");
         plano.descricao = sc.nextLine();
-
         System.out.println("Velocidade: ");
         plano.velocidade = sc.nextDouble();
-
         System.out.println("Preço: ");
         plano.preco = sc.nextDouble();
 

@@ -1,4 +1,4 @@
-package org.example.Controller;
+package org.example.controller;
 
 public class Equipamento {
 
@@ -28,7 +28,7 @@ public class Equipamento {
         return !entregue;
     }
 
-    public String detalhesEquipamento() {
+    public String toString() {
         return String.format("Equipamento #%d - Tipo: %s - Disponível: %s",
                 id, tipo, estaDisponivel() ? "Sim" : "Não");
     }

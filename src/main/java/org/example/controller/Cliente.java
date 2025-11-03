@@ -1,5 +1,6 @@
-package org.example.Controller;
+package org.example.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class Cliente {
     private String endereco;
     private String contato;
     private Plano plano;
-    private List<Equipamento> equipamentos;
+    private List<Equipamento> equipamentos = new ArrayList<>();
 
     public Cliente() {
 
@@ -43,6 +44,40 @@ public class Cliente {
 
     }
 
+    public static void atualizarDados() {
+
+        System.out.println("Selecione o cliente: ");
+        System.out.println("Nome: ");
+
+        Scanner sc = new Scanner(System.in);
+
+        String nomeCliente = sc.nextLine();
+
+        // LÓGICA PARA PESQUISAR O CLIENTE
+
+        // Dados mockados ------------------------
+        Plano plano = new Plano("Teste", "Teste", 1, 1);
+        Cliente cliente = new Cliente("José", "Rua Tereza", "28913822", plano);
+        // ---------------------------------------
+
+        System.out.println("Dados do cliente selecionado");
+        System.out.println(cliente);
+
+
+        System.out.println("Nome: ");
+        cliente.nome = sc.nextLine();
+        System.out.println("Endereço: ");
+        cliente.endereco = sc.nextLine();
+        System.out.println("Contato: ");
+        cliente.contato = sc.nextLine();
+        System.out.println("Plano: ");
+        cliente.plano = new Plano("Teste", "Teste", 1, 1);
+
+        // LÓGICA DO BANCO DE DADOS
+
+
+    }
+
     public void atualizarContato(String novoContato) {
         this.contato = novoContato;
     }
@@ -64,42 +99,15 @@ public class Cliente {
     }
 
     public void listarEquipamentos() {
-        //
-    }
+        if (equipamentos.isEmpty()) {
+            System.out.println("Nenhum equipamento associado.");
+            return;
+        }
 
-    public static void atualizarDados() {
-
-        System.out.println("Selecione o cliente: ");
-        System.out.println("Nome: ");
-
-        Scanner sc = new Scanner(System.in);
-
-        String nomeCliente = sc.nextLine();
-
-        // LÓGICA PARA PESQUISAR O CLIENTE
-
-        Plano plano = new Plano("Teste", "Teste", 1, 1);
-        Cliente cliente = new Cliente("José", "Rua Tereza", "28913822", plano);
-
-        System.out.println("Dados do cliente selecionado");
-
-        System.out.println(cliente);
-
-        System.out.println("Nome: ");
-        cliente.nome = sc.nextLine();
-
-        System.out.println("Endereço: ");
-        cliente.endereco = sc.nextLine();
-
-        System.out.println("Contato: ");
-        cliente.contato = sc.nextLine();
-
-        System.out.println("Plano: ");
-        cliente.plano = new Plano("Teste", "Teste", 1, 1);
-
-        // LÓGICA DO BANCO DE DADOS
-
-
+        System.out.println("Equipamentos do cliente " + nome + ":");
+        for (Equipamento e : equipamentos) {
+            System.out.println("- " + e);
+        }
     }
 
     public String getNome() {
