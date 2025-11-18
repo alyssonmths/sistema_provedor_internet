@@ -12,7 +12,7 @@ public class Estoque {
     private List<Equipamento> equipamentos = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
-    public void consultarEstoque() {
+    public void consultar() {
 
         System.out.printf("+----+------------------------------+------------------------------------------+%n");
         System.out.printf("| %-2s | %-28s | %-40s |%n", "ID", "Tipo", "Disponível?");
@@ -36,8 +36,8 @@ public class Estoque {
         atualizarQuantidade();
     }
 
-    public void removerEquipamento(Equipamento e) {
-        equipamentos.remove(e);
+    public void removerEquipamento(int id) {
+        equipamentos.removeIf(e -> e.id == id);
         atualizarQuantidade();
     }
 
