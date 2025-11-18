@@ -37,10 +37,7 @@ public class Cliente {
         this.contato = sc.nextLine();
 
         System.out.println("Plano: ");
-        this.plano = new Plano("Teste", "Teste", 1, 1);
-
-        // LOGICA DO BANCO DE DADOS
-
+        this.plano = new Plano(1, "Teste", "Teste", 1, 1);
 
     }
 
@@ -56,7 +53,7 @@ public class Cliente {
         // LÓGICA PARA PESQUISAR O CLIENTE
 
         // Dados mockados ------------------------
-        Plano plano = new Plano("Teste", "Teste", 1, 1);
+        Plano plano = new Plano(1, "Teste", "Teste", 1, 1);
         Cliente cliente = new Cliente("José", "Rua Tereza", "28913822", plano);
         // ---------------------------------------
 
@@ -71,7 +68,7 @@ public class Cliente {
         System.out.println("Contato: ");
         cliente.contato = sc.nextLine();
         System.out.println("Plano: ");
-        cliente.plano = new Plano("Teste", "Teste", 1, 1);
+        cliente.plano = new Plano(1, "Teste", "Teste", 1, 1);
 
         // LÓGICA DO BANCO DE DADOS
 
@@ -112,6 +109,18 @@ public class Cliente {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public Plano getPlano() {
+        return plano;
     }
 
     @Override
