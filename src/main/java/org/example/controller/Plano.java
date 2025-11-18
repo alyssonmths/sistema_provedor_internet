@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Plano {
 
+    private int id;
     private String nome;
     private String descricao;
     private double velocidade;
@@ -13,7 +14,8 @@ public class Plano {
 
     }
 
-    public Plano(String nome, String descricao, double velocidade, double preco) {
+    public Plano(int id, String nome, String descricao, double velocidade, double preco) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.velocidade = velocidade;
@@ -58,7 +60,7 @@ public class Plano {
         // LÓGICA PARA PESQUISAR O PLANO
 
         // Dados mockados ---------------
-        Plano plano = new Plano("Teste", "Teste", 1, 1);
+        Plano plano = new Plano(1, "Teste", "Teste", 1, 1);
         // ------------------------------
 
         System.out.println("Dados do plano selecionado");
@@ -83,6 +85,10 @@ public class Plano {
 
     public String getNome() {
         return nome;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
