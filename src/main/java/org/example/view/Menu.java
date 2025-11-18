@@ -5,6 +5,7 @@ import org.example.controller.Equipamento;
 import org.example.controller.Estoque;
 import org.example.controller.Plano;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -13,24 +14,43 @@ public class Menu {
 
     public static void principal() {
 
-        System.out.println("O que deseja fazer? ");
+        int escolha = -1;
 
-        System.out.println("1. Gerenciar clientes");
-        System.out.println("2. Gerenciar planos");
-        System.out.println("3. Gerenciar estoque");
+        while (escolha != 0) {
 
-        int escolha = sc.nextInt();
+            System.out.println("\nO que deseja fazer? ");
 
-        switch (escolha) {
-            case 1:
-                menuClientes();
-                break;
-            case 2:
-                menuPlanos();
-                break;
-            case 3:
-                menuEstoque();
-                break;
+            System.out.println("1. Gerenciar clientes");
+            System.out.println("2. Gerenciar planos");
+            System.out.println("3. Gerenciar estoque");
+            System.out.println("0. Sair do sistema");
+
+            try {
+                escolha = sc.nextInt();
+
+                switch (escolha) {
+                    case 1:
+                        menuClientes();
+                        break;
+                    case 2:
+                        menuPlanos();
+                        break;
+                    case 3:
+                        menuEstoque();
+                        break;
+                    case 0:
+                        System.out.println("Obrigado por utilizar o sistema!");
+                        return;
+                    default:
+                        System.out.println("Escolha uma opção válida");
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Escolha uma opção válida");
+                sc.nextLine();
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
         }
     }
 
@@ -48,7 +68,7 @@ public class Menu {
             Cliente cliente = new Cliente();
             cliente.cadastrar();
 
-            System.out.printf("Cliente %s cadastrado com sucesso", cliente.getNome());
+            System.out.printf("Cliente %s cadastrado com sucesso %n", cliente.getNome());
 
         } else if (escolha == 2) {
 
@@ -73,7 +93,7 @@ public class Menu {
             Plano plano = new Plano();
             plano.cadastrar();
 
-            System.out.printf("Plano %s cadastrado com sucesso", plano.getNome());
+            System.out.printf("Plano %s cadastrado com sucesso %n", plano.getNome());
 
         } else if (escolha == 2) {
 
