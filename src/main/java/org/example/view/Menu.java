@@ -5,12 +5,16 @@ import org.example.controller.Equipamento;
 import org.example.controller.Estoque;
 import org.example.controller.Plano;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
 
     private static final Scanner sc = new Scanner(System.in);
+    private static Estoque estoque = new Estoque();
+    private static List<Cliente> clientes = new ArrayList<>();
 
     public static void principal() {
 
@@ -58,6 +62,7 @@ public class Menu {
         System.out.println("GERENCIAR CLIENTES");
         System.out.println("1. Fazer cadastro");
         System.out.println("2. Atualizar dados");
+        System.out.println("3. Consultar clientes");
 
         int escolha = sc.nextInt();
 
@@ -68,6 +73,8 @@ public class Menu {
             Cliente cliente = new Cliente();
             cliente.cadastrar();
 
+            clientes.add(cliente);
+
             System.out.printf("Cliente %s cadastrado com sucesso %n", cliente.getNome());
 
         } else if (escolha == 2) {
@@ -75,6 +82,25 @@ public class Menu {
             System.out.println("ATUALIZAÇÃO DE CLIENTE");
 
             Cliente.atualizarDados();
+
+        } else if (escolha == 3) {
+
+            System.out.println("CONSULTAR CLIENTES");
+
+            System.out.printf("+----------+------------------------------+---------------------------+-----------+%n");
+            System.out.printf("| %-20s | %-28s | %-15s | %-10s |%n", "Nome", "Endereço", "Contato", "Plano");
+            System.out.printf("+----------+------------------------------+----------------------------+----------+%n");
+
+            for (Cliente cliente : clientes) {
+                System.out.printf("| %-20s | %-28s | %-15s | %-10s |%n",
+                        cliente.getNome(),
+                        cliente.getEndereco(),
+                        cliente.getContato(),
+                        cliente.getPlano().getNome()
+                );
+            }
+
+            System.out.printf("+----------+------------------------------+---------------------------+-----------+%n");
 
         }
     }
@@ -113,28 +139,19 @@ public class Menu {
 
         System.out.println("1. Consultar estoque");
         System.out.println("2. Adicionar equipamento");
-        System.out.println("3. Registrar saída");
+        System.out.println("3. Remover equipamento");
+        System.out.println("4. Registrar saída");
 
         int escolha = sc.nextInt();
-        Estoque estoque = new Estoque();
-
-        // Dados mockados ------------
-        for (int i = 0; i < 5; i++) {
-            Equipamento e = new Equipamento(1, "Roteador TP-LINK", false);
-            estoque.adicionarEquipamento(e);
-        }
-        // --------------------------
 
         if (escolha == 1) {
 
             System.out.println("CONSULTA DE ESTOQUE");
-            estoque.consultarEstoque();
+            estoque.consultar();
 
         } else if (escolha == 2) {
 
             System.out.println("ADICIONAR EQUIPAMENTO");
-
-            System.out.println("REGISTRAR SAÍDA");
 
             System.out.println("ID: ");
             int id = sc.nextInt();
@@ -153,8 +170,15 @@ public class Menu {
 
         } else if (escolha == 3) {
 
-            Equipamento e = new Equipamento();
-            estoque.removerEquipamento(e);
+            estoque.consultar();
+
+            System.out.println("Digite o ID do equipamento que deseja remover: ");
+            int idEquipamento = sc.nextInt();
+            estoque.removerEquipamento(idEquipamento);
+
+        } else if (escolha == 4) {
+
+            System.out.println("Registrar saída");
 
         }
 
