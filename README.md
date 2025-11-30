@@ -1,7 +1,7 @@
 # 🌐 Sistema de Gerenciamento de Provedor de Internet
 
 Este projeto tem como objetivo desenvolver um **sistema básico de gerenciamento para um provedor de internet**, permitindo o cadastro e gerenciamento de clientes, planos de internet e controle de equipamentos em estoque.  
-O sistema foi projetado como parte de uma atividade acadêmica e implementado em **Java**, seguindo princípios de orientação a objetos.
+O sistema foi projetado como parte de uma atividade acadêmica na disciplina de Projeto de Software e implementado em **Java**, seguindo princípios de orientação a objetos.
 
 ---
 
@@ -41,7 +41,7 @@ O sistema inclui as seguintes funcionalidades principais:
 - Registrar Saída de Equipamento
 - Atualizar Dados do Cliente
 
-> O diagrama ilustra como **administradores** e **clientes** interagem com o sistema.
+> O diagrama ilustra como **administradores** interagem com o sistema.
 
 ---
 
@@ -67,7 +67,7 @@ As principais classes do domínio são:
 - **Maven** – gerenciamento de dependências e build
 - **UML** – modelagem do sistema
 - **Git & GitHub** – versionamento de código
-- **Figma / Draw.io** – prototipação e diagramas
+- **Canva** – prototipação e diagramas
 
 ---
 
@@ -123,7 +123,7 @@ Antes de executar o projeto, certifique-se de ter instalado:
 
 ### 1. Clonar o repositório
 ```bash
-git clone <url-do-repositório>
+git clone https://github.com/alyssonmths/sistema_provedor_internet.git
 cd sistema_provedor_internet
 ```
 
@@ -142,25 +142,7 @@ mvn clean install
 mvn compile exec:java -Dexec.mainClass="org.example.Main"
 ```
 
-**Opção 2: Compilar e executar manualmente**
-```bash
-# Compilar o projeto
-mvn compile
-
-# Executar (Windows)
-java -cp target/classes org.example.Main
-
-# Executar (Linux/Mac)
-java -cp target/classes org.example.Main
-```
-
-**Opção 3: Executar o JAR (após empacotar)**
-```bash
-mvn package
-java -jar target/sistema_provedor_internet-1.0-SNAPSHOT.jar
-```
-
-**Opção 4: Executar diretamente (se tiver Java instalado)**
+**Opção 2: Executar diretamente (se tiver Java instalado)**
 ```bash
 # Navegue até a pasta src/main/java
 cd src/main/java
