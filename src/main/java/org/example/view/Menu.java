@@ -184,7 +184,8 @@ public class Menu {
 
         } else if (escolha == 4) {
 
-            System.out.println("Registrar saída");
+            System.out.println("REGISTRAR SAÍDA");
+            estoque.registrarSaida();
 
         }
 

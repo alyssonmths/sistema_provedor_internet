@@ -49,4 +49,55 @@ public class Estoque {
         return this.quantidade;
     }
 
+    public void registrarSaida() {
+        if (equipamentos.isEmpty()) {
+            System.out.println("\nNenhum equipamento cadastrado no estoque.");
+            return;
+        }
+
+        // Filtrar apenas equipamentos disponíveis
+        List<Equipamento> equipamentosDisponiveis = new ArrayList<>();
+        for (Equipamento equipamento : this.equipamentos) {
+            if (equipamento.estaDisponivel()) {
+                equipamentosDisponiveis.add(equipamento);
+            }
+        }
+
+        if (equipamentosDisponiveis.isEmpty()) {
+            System.out.println("\nNenhum equipamento disponível para saída.");
+            return;
+        }
+
+        System.out.println("\nEquipamentos disponíveis para saída:");
+        System.out.printf("+----+------------------------------+------------------------------------------+%n");
+        System.out.printf("| %-2s | %-28s | %-40s |%n", "ID", "Tipo", "Disponível?");
+        System.out.printf("+----+------------------------------+------------------------------------------+%n");
+
+        int indice = 1;
+        for (Equipamento equipamento : equipamentosDisponiveis) {
+            System.out.printf("| %-2d | %-28s | %-40s |%n",
+                    indice++,
+                    equipamento.tipo,
+                    equipamento.estaDisponivel() ? "Sim" : "Não"
+            );
+        }
+        System.out.printf("+----+------------------------------+------------------------------------------+%n");
+
+        System.out.println("\nSelecione o equipamento pelo número da lista: ");
+        int escolha = sc.nextInt();
+        sc.nextLine();
+
+        if (escolha < 1 || escolha > equipamentosDisponiveis.size()) {
+            System.out.println("Número inválido!");
+            return;
+        }
+
+        Equipamento equipamentoSelecionado = equipamentosDisponiveis.get(escolha - 1);
+        equipamentoSelecionado.marcarComoEntregue();
+
+        System.out.println("\nSaída registrada com sucesso!");
+        System.out.println("Equipamento: " + equipamentoSelecionado.tipo);
+        System.out.println("Status: Não disponível (entregue)");
+    }
+
 }
