@@ -81,7 +81,7 @@ public class Menu {
 
             System.out.println("ATUALIZAÇÃO DE CLIENTE");
 
-            Cliente.atualizarDados();
+            Cliente.atualizarDados(clientes);
 
         } else if (escolha == 3) {
 
@@ -109,6 +109,7 @@ public class Menu {
         System.out.println("GERENCIAR PLANOS");
         System.out.println("1. Cadastrar novo");
         System.out.println("2. Atualizar dados");
+        System.out.println("3. Consultar planos");
 
         int escolha = sc.nextInt();
 
@@ -128,6 +129,11 @@ public class Menu {
             Plano.atualizarDados();
 
             System.out.println("Plano atualizado com sucesso");
+
+        } else if (escolha == 3) {
+
+            System.out.println("CONSULTAR PLANOS");
+            Plano.exibirPlanos();
 
         }
 

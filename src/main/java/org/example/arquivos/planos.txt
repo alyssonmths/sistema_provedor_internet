@@ -1,0 +1,6 @@
+1;Básico;Plano básico de internet para uso residencial;50.00;79.90
+2;Intermediário;Plano intermediário ideal para famílias;100.00;129.90
+3;Avançado;Plano avançado para usuários que precisam de alta velocidade;200.00;199.90
+4;Premium;Plano premium com máxima velocidade e estabilidade;500.00;349.90
+5;Ultra;Plano ultra para empresas e gamers;1000.00;599.90
+6;Safira;Plano ótimo;100.00;150.00

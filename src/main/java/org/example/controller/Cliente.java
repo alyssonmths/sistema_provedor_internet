@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static org.example.controller.Plano.carregarPlanosDoArquivo;
+
 public class Cliente {
 
     private String nome;
@@ -36,42 +38,139 @@ public class Cliente {
         System.out.println("Contato: ");
         this.contato = sc.nextLine();
 
-        System.out.println("Plano: ");
-        this.plano = new Plano(1, "Teste", "Teste", 1, 1);
+        // Carregar planos do arquivo
+        List<Plano> planosDisponiveis = carregarPlanosDoArquivo();
+
+        System.out.println("\nPlanos disponíveis:");
+        System.out.println("+----+----------------+------------------------------------------+-------------+----------+");
+        System.out.printf("| %-2s | %-14s | %-40s | %-11s | %-8s |%n", "ID", "Nome", "Descrição", "Velocidade", "Preço");
+        System.out.println("+----+----------------+------------------------------------------+-------------+----------+");
+
+        for (Plano plano : planosDisponiveis) {
+            System.out.printf("| %-2d | %-14s | %-40s | %-11.0f Mbps | R$ %-6.2f |%n",
+                    plano.getId(),
+                    plano.getNome(),
+                    plano.getDescricao().length() > 40 ? plano.getDescricao().substring(0, 37) + "..." : plano.getDescricao(),
+                    plano.getVelocidade(),
+                    plano.getPreco());
+        }
+        System.out.println("+----+----------------+------------------------------------------+-------------+----------+");
+
+        System.out.println("\nSelecione o ID do plano desejado: ");
+        int idPlanoEscolhido = sc.nextInt();
+        sc.nextLine();
+
+        Plano planoEscolhido = null;
+        for (Plano plano : planosDisponiveis) {
+            if (plano.getId() == idPlanoEscolhido) {
+                planoEscolhido = plano;
+                break;
+            }
+        }
+
+        if (planoEscolhido != null) {
+            this.plano = planoEscolhido;
+            System.out.println("Plano " + planoEscolhido.getNome() + " selecionado com sucesso!");
+        }
 
     }
 
-    public static void atualizarDados() {
+    public static void atualizarDados(List<Cliente> clientes) {
 
-        System.out.println("Selecione o cliente: ");
-        System.out.println("Nome: ");
+        if (clientes.isEmpty()) {
+            System.out.println("Nenhum cliente cadastrado no sistema.");
+            return;
+        }
 
         Scanner sc = new Scanner(System.in);
 
-        String nomeCliente = sc.nextLine();
+        System.out.println("\nClientes cadastrados:");
+        System.out.println("+----+------------------------------+");
+        System.out.printf("| %-2s | %-28s |%n", "ID", "Nome");
+        System.out.println("+----+------------------------------+");
+        
+        for (int i = 0; i < clientes.size(); i++) {
+            System.out.printf("| %-2d | %-28s |%n", i + 1, clientes.get(i).getNome());
+        }
+        System.out.println("+----+------------------------------+");
 
-        // LÓGICA PARA PESQUISAR O CLIENTE
+        System.out.println("\nSelecione o cliente pelo ID: ");
+        int idCliente = sc.nextInt();
+        sc.nextLine();
 
-        // Dados mockados ------------------------
-        Plano plano = new Plano(1, "Teste", "Teste", 1, 1);
-        Cliente cliente = new Cliente("José", "Rua Tereza", "28913822", plano);
-        // ---------------------------------------
+        if (idCliente < 1 || idCliente > clientes.size()) {
+            System.out.println("ID de cliente inválido!");
+            return;
+        }
 
-        System.out.println("Dados do cliente selecionado");
+        Cliente cliente = clientes.get(idCliente - 1);
+
+        System.out.println("\nDados atuais do cliente selecionado:");
         System.out.println(cliente);
 
+        System.out.println("\nDigite os novos dados (pressione Enter para manter o valor atual):");
 
-        System.out.println("Nome: ");
-        cliente.nome = sc.nextLine();
-        System.out.println("Endereço: ");
-        cliente.endereco = sc.nextLine();
-        System.out.println("Contato: ");
-        cliente.contato = sc.nextLine();
-        System.out.println("Plano: ");
-        cliente.plano = new Plano(1, "Teste", "Teste", 1, 1);
+        System.out.println("Nome [" + cliente.getNome() + "]: ");
+        String novoNome = sc.nextLine();
+        if (!novoNome.trim().isEmpty()) {
+            cliente.nome = novoNome;
+        }
 
-        // LÓGICA DO BANCO DE DADOS
+        System.out.println("Endereço [" + cliente.getEndereco() + "]: ");
+        String novoEndereco = sc.nextLine();
+        if (!novoEndereco.trim().isEmpty()) {
+            cliente.endereco = novoEndereco;
+        }
 
+        System.out.println("Contato [" + cliente.getContato() + "]: ");
+        String novoContato = sc.nextLine();
+        if (!novoContato.trim().isEmpty()) {
+            cliente.contato = novoContato;
+        }
+
+        System.out.println("\nDeseja alterar o plano? (s/n): ");
+        String alterarPlano = sc.nextLine();
+
+        if (alterarPlano.equalsIgnoreCase("s")) {
+            List<Plano> planosDisponiveis = carregarPlanosDoArquivo();
+
+            System.out.println("\nPlanos disponíveis:");
+            System.out.println("+----+----------------+------------------------------------------+-------------+----------+");
+            System.out.printf("| %-2s | %-14s | %-40s | %-11s | %-8s |%n", "ID", "Nome", "Descrição", "Velocidade", "Preço");
+            System.out.println("+----+----------------+------------------------------------------+-------------+----------+");
+
+            for (Plano plano : planosDisponiveis) {
+                System.out.printf("| %-2d | %-14s | %-40s | %-11.0f Mbps | R$ %-6.2f |%n",
+                        plano.getId(),
+                        plano.getNome(),
+                        plano.getDescricao().length() > 40 ? plano.getDescricao().substring(0, 37) + "..." : plano.getDescricao(),
+                        plano.getVelocidade(),
+                        plano.getPreco());
+            }
+            System.out.println("+----+----------------+------------------------------------------+-------------+----------+");
+
+            System.out.println("\nSelecione o ID do novo plano: ");
+            int idPlanoEscolhido = sc.nextInt();
+            sc.nextLine();
+
+            Plano planoEscolhido = null;
+            for (Plano plano : planosDisponiveis) {
+                if (plano.getId() == idPlanoEscolhido) {
+                    planoEscolhido = plano;
+                    break;
+                }
+            }
+
+            if (planoEscolhido != null) {
+                cliente.plano = planoEscolhido;
+                System.out.println("Plano " + planoEscolhido.getNome() + " atualizado com sucesso!");
+            } else {
+                System.out.println("ID de plano inválido. Plano não alterado.");
+            }
+        }
+
+        System.out.println("\nDados do cliente atualizados com sucesso!");
+        System.out.println(cliente);
 
     }
 
